@@ -1,7 +1,3 @@
-/**
- * zhangrz3
- * 2015年1月14日
- */
 package com.jeffy.importexcel;
 
 import java.io.File;
@@ -26,7 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
- * @author zhangrz3
+ * @author Jeffy
  *
  */
 public class ExcelToDb {

@@ -1,7 +1,3 @@
-/**
- * zhangrz3
- * 2015�?�?�?
- */
 package com.jeffy.importexcel;
 
 import java.sql.Connection;
@@ -20,8 +16,8 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 
 /**
- * 处理数据库增删改查工具类
- * @author zhangrz3
+ * Utility for database query & update
+ * @author Jeffy
  *
  */
 public class DBTools {
@@ -64,10 +60,10 @@ public class DBTools {
 		this.conn = ConnectionFactory.getConnection(info.getUrl(), info.getUser(), info.getPassword());
 	}
 	/**
-	 * 根据指定的查询语句返回第�?��匹配的�?
-	 * @param sql 查询语句
-	 * @param conditions  查询条件
-	 * @return
+	 * According the query return first match record.
+	 * @param sql String query string
+	 * @param conditions  List<Object> conditions in query
+	 * @return Map<String, Object> The key is column name and the value is column value
 	 */
 	public Map<String, Object> getFirst(String sql,List<Object> conditions){
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -99,9 +95,9 @@ public class DBTools {
 		return resultMap;
 	}
 	/**
-	 * 根据指定的条件获取所有满足条件的记录
-	 * @param sql 查询语句
-	 * @param conditions 查询条件
+	 * According the query return matched records.
+	 * @param sql String query string
+	 * @param conditions List<Object> conditions in query
 	 * @return List<Map<String,Object>> 
 	 */
 	public List<Map<String, Object>> getSelect(String sql,List<Object> conditions){
@@ -147,10 +143,10 @@ public class DBTools {
 		return collections;
 	}
 	/**
-	 * 进行DML操作的统�?���?
-	 * @param sql 要执行的SQL脚本
-	 * @param conditions 执行的条�?
-	 * @return Integer 受影响的行数
+	 * Execute update ,delete or other DDL statement.
+	 * @param sql String SQL statement
+	 * @param conditions List<Object> 
+	 * @return Integer If is update or delete statement is return effect rows or 0.
 	 */
 	public Integer doUpdate(String sql,List<Object> conditions){
 		Integer affects = 0;
@@ -174,6 +170,11 @@ public class DBTools {
 		}
 		return affects;
 	}
+	/**
+	 * Use to create object in database
+	 * @param sql String DDL statement
+	 * @return Integer 0
+	 */
 	public Integer doCreate(String sql){
 		Statement state = null;
 		Integer affects = 0;
@@ -192,6 +193,9 @@ public class DBTools {
 		}
 		return affects;
 	}
+	/**
+	 * Close database connection
+	 */
 	public void close(){
 		try {
 			this.conn.close();
